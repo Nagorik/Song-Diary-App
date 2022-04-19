@@ -1,0 +1,17 @@
+<form [formGroup]="inputForm" class="form-inline" (ngSubmit)="submitInput()">
+  <label class="mb-2 mr-2"> New {{ type | titlecase }} </label>
+    <div class="form-group position-relative mb-2">
+      <input type="text" formControlName="input" class="form-control" capitalizeFirst>
+      <small 
+      class="text-danger position-absolute bottom-8" 
+      *ngIf="submitted && form.input.errors?.required">
+        Field is required
+      </small>
+      <small 
+      class="text-danger position-absolute bottom-8" 
+      *ngIf="submitted && form.input.errors?.minlength">
+        Minimum 5 characters
+      </small>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Add</button>
+</form>

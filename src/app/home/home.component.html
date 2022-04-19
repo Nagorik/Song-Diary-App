@@ -1,0 +1,56 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <span class="navbar-brand mb-0 h1">Song Diary App</span>
+    <!-- <button type="button" (click)="setExpToken()">Set Expired Token</button> -->
+    <button type="button" class="btn btn-sm btn-primary" (click)="refreshPage()">Refresh App</button>
+  </div>
+</nav>
+
+<div class="container py-5">
+    <div class="row no-gutters">
+      <div class="col-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="mb-3">
+              <app-songs-artists-input type="song" (onSubmit)="onSaveNewSong($event)"></app-songs-artists-input>
+            </div>
+            <div>
+              <app-songs-artists-input type="artist" (onSubmit)="onSaveNewArtist($event)"></app-songs-artists-input>
+            </div>
+            <div class="mt-2">
+                <span class="pr-2">Total Songs: {{ (songsService.Store$ | async)?.songs?.length }}</span>
+                |
+                <span class="pl-2">Total Artists: {{ (artistService.Store$ | async)?.artists?.length }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+          <div class="card">
+              <div class="card-body">
+                  <canvas baseChart
+                      height="150"
+                      [data]="barChartData"
+                      [options]="barChartOptions"
+                      [type]="barChartType"
+                  >
+                </canvas>
+              </div>
+          </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <div class="card-body">
+            <app-song-list></app-song-list>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <div class="card-body">
+            <app-artist-list></app-artist-list>
+          </div>
+        </div>
+      </div>    
+    </div>
+  </div>

@@ -1,0 +1,14 @@
+<h5>Artists List</h5>
+<div class="min-h-184">
+    <ul class="li-items">
+        <li *ngFor="let artist of (artistService.Store$ | async)?.artists; let i = index" class="position-relative">
+            <p [ngClass]="{'text-success': i < 3}">{{ i + 1 + ".  " + artist.name }}</p>
+            <div class="position-absolute left-delete-btn">
+                <button (click)="onDeleteArtist(artist)" class="btn btn-sm btn-danger" title="Delete"> &#8212; </button>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="mt-3">
+    <app-songs-artists-input type="artist" (onSubmit)="onSaveNewArtist($event)"></app-songs-artists-input>
+</div>
